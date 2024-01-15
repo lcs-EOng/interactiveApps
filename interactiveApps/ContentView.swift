@@ -8,12 +8,54 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    // MARK: Stored properties
+    @State var base: Int = 1
+    @State var base1: Int = 1
+
+    
+    // MARK: Computed properties
+    var sum: Int{
+        return base + base1
+    }
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            
+            Spacer()
+            
+            HStack(alignment: .top) {
+                
+                Text("")
+                Spacer()
+                Text("\(base)")
+                    .font(.system(size: 96))
+
+            }
+            
+            Stepper(value: $base, label:{
+                Text("Select first number")
+                })
+            
+            HStack(alignment: .top) {
+
+                Text("+")
+                    .font(.system(size: 96))
+                Spacer()
+                Text("\(base1)")
+                    .font(.system(size: 96))
+            }
+            
+            Stepper(value: $base1, label:{
+                Text("Select second number")
+                })
+                        
+            Spacer()
+            HStack{
+                Text("")
+                Spacer()
+                Text("\(sum)")
+                    .font(.system(size: 96))
+            }
         }
         .padding()
     }
@@ -22,3 +64,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
