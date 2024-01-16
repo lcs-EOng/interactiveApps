@@ -11,7 +11,7 @@ import SwiftUI
 struct interactiveAppsApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView_TabItems()
             TabView {
                 
                 Text("Plus")
