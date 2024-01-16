@@ -1,67 +1,67 @@
 //
 //  ContentView.swift
-//  interactiveApps
+//  stopWatch
 //
-//  Created by Ong Eason on 15/1/2024.
+//  Created by Ong Eason on 3/11/2023.
 //
 
 import SwiftUI
 
 struct ContentView: View {
-    
-    // MARK: Stored properties
-    @State var base: Int = 1
-    @State var base1: Int = 1
-
-    
-    // MARK: Computed properties
-    var sum: Int{
-        return base + base1
-    }
     var body: some View {
-        VStack {
-            
-            Spacer()
-            
-            HStack(alignment: .top) {
+        ZStack{
+            //Second layer (rest of interface)
+            VStack {
                 
-                Text("")
                 Spacer()
-                Text("\(base)")
-                    .font(.system(size: 96))
-
+                
+                Text("00:09.96")
+                    .font(Font.system(size: 90))
+                    .fontWeight(.thin)
+                    .foregroundStyle(.white)
+                
+                
+                //List of items
+                
+                .frame(height: 300)
+                .listStyle(.plain)
             }
-            
-            Stepper(value: $base, label:{
-                Text("Select first number")
-                })
-            
-            HStack(alignment: .top) {
-
-                Text("+")
-                    .font(.system(size: 96))
-                Spacer()
-                Text("\(base1)")
-                    .font(.system(size: 96))
-            }
-            
-            Stepper(value: $base1, label:{
-                Text("Select second number")
-                })
-                        
-            Spacer()
-            HStack{
-                Text("")
-                Spacer()
-                Text("\(sum)")
-                    .font(.system(size: 96))
-            }
+            .padding()
         }
-        .padding()
     }
 }
 
 #Preview {
-    ContentView()
+    TabView(selection: Binding.constant(3)){
+        Text("World Clock")
+            .tabItem {
+                Image(systemName: "plus")
+                Text("Sum")
+            }
+        
+        Text("Alarm")
+            .tabItem {
+                Image(systemName: "minus")
+                Text("Minus")
+            }
+        
+        ContentView()
+            .tabItem {
+                Image(systemName: "multiply")
+                Text("Multiply")
+            }
+        
+        Text("Timer")
+            .tabItem {
+                Image(systemName: "divide")
+                Text("Division")
+            }
+        
+        
+        
+        
+    }
+    //Change the accent color for the currently active tab item
+    .accentColor(.orange)
+    .preferredColorScheme(.dark)
 }
-
